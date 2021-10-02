@@ -117,11 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ADMIN" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="CATEGORIA" xml:space="preserve">
+    <value>Categoria</value>
+  </data>
+  <data name="CUPOM" xml:space="preserve">
+    <value>Cupom</value>
+  </data>
   <data name="EMAIL" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="ENDERECO" xml:space="preserve">
+    <value>Endereço</value>
+  </data>
+  <data name="HORARIO" xml:space="preserve">
+    <value>Horário</value>
+  </data>
+  <data name="ITEM" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="LOJA" xml:space="preserve">
+    <value>Loja</value>
+  </data>
+  <data name="PAGAMENTO" xml:space="preserve">
+    <value>Pagamento</value>
+  </data>
+  <data name="PEDIDO" xml:space="preserve">
+    <value>Pedido</value>
+  </data>
+  <data name="PRODUTO" xml:space="preserve">
+    <value>Produto</value>
+  </data>
   <data name="SENHA" xml:space="preserve">
     <value>Senha</value>
+  </data>
+  <data name="STATUS" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="TAXA" xml:space="preserve">
+    <value>Taxa</value>
   </data>
   <data name="USUARIO" xml:space="preserve">
     <value>Usuário</value>

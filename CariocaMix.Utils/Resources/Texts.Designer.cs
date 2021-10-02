@@ -61,6 +61,33 @@ namespace CariocaMix.Utils.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin.
+        /// </summary>
+        public static string ADMIN {
+            get {
+                return ResourceManager.GetString("ADMIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categoria.
+        /// </summary>
+        public static string CATEGORIA {
+            get {
+                return ResourceManager.GetString("CATEGORIA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cupom.
+        /// </summary>
+        public static string CUPOM {
+            get {
+                return ResourceManager.GetString("CUPOM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string EMAIL {
@@ -70,11 +97,92 @@ namespace CariocaMix.Utils.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Endereço.
+        /// </summary>
+        public static string ENDERECO {
+            get {
+                return ResourceManager.GetString("ENDERECO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horário.
+        /// </summary>
+        public static string HORARIO {
+            get {
+                return ResourceManager.GetString("HORARIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item.
+        /// </summary>
+        public static string ITEM {
+            get {
+                return ResourceManager.GetString("ITEM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loja.
+        /// </summary>
+        public static string LOJA {
+            get {
+                return ResourceManager.GetString("LOJA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pagamento.
+        /// </summary>
+        public static string PAGAMENTO {
+            get {
+                return ResourceManager.GetString("PAGAMENTO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pedido.
+        /// </summary>
+        public static string PEDIDO {
+            get {
+                return ResourceManager.GetString("PEDIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Produto.
+        /// </summary>
+        public static string PRODUTO {
+            get {
+                return ResourceManager.GetString("PRODUTO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Senha.
         /// </summary>
         public static string SENHA {
             get {
                 return ResourceManager.GetString("SENHA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string STATUS {
+            get {
+                return ResourceManager.GetString("STATUS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Taxa.
+        /// </summary>
+        public static string TAXA {
+            get {
+                return ResourceManager.GetString("TAXA", resourceCulture);
             }
         }
         
