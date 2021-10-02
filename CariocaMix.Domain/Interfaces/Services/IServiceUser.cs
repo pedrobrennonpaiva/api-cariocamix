@@ -1,6 +1,5 @@
 ﻿using CariocaMix.Domain.Models.Returns;
 using CariocaMix.Domain.Models.User;
-using System;
 using System.Collections.Generic;
 
 namespace CariocaMix.Domain.Interfaces.Services
