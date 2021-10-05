@@ -1,3 +1,5 @@
+using CariocaMix.CrossCutting.Interfaces;
+using CariocaMix.CrossCutting.Services;
 using CariocaMix.Domain.Interfaces.Repositories;
 using CariocaMix.Domain.Interfaces.Services;
 using CariocaMix.Domain.Models.Token;
@@ -32,6 +34,7 @@ namespace CariocaMix.API
             services.AddSingleton(_ => Configuration);
             services.AddTransient<IRepositoryUser, RepositoryUser>();
             services.AddTransient<IServiceUser, ServiceUser>();
+            services.AddScoped<IConfigurationHelper, ConfigurationHelper>();
 
             services.AddDbContext<Context>();
 

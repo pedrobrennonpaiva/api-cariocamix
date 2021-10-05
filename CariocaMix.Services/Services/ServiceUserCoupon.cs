@@ -35,7 +35,7 @@ namespace CariocaMix.Service.Services
 
                 return new Result(true, resultObj);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new Result(false, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "cadastrar!"));
             }

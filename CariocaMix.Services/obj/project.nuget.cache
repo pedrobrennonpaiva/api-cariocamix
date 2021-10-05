@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "J+X9cu3ymdUnz8HZ/U/o7Mbq2ZmqndoLzyBOxwN1i4SJmpdbuJ1S2jtA8XFDwHkz6YraLiiD2mcTjNM48aFDww==",
+  "dgSpecHash": "oFySXtG/39dxgRFTkzBZztZta5+OhWYTI9wq15hM1q3FqoVAVEo3+vMYqKReLkEw5S59KjRUh6ElgpUmMIi5JQ==",
   "success": true,
   "projectFilePath": "C:\\dev\\CariocaMix\\CariocaMix.Services\\CariocaMix.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pedro\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.extensions.configuration.binder\\5.0.0\\microsoft.extensions.configuration.binder.5.0.0.nupkg.sha512",
     "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\6.12.2\\microsoft.identitymodel.jsonwebtokens.6.12.2.nupkg.sha512",
     "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.identitymodel.logging\\6.12.2\\microsoft.identitymodel.logging.6.12.2.nupkg.sha512",

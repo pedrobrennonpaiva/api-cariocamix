@@ -153,6 +153,9 @@
   <data name="SENHA" xml:space="preserve">
     <value>Senha</value>
   </data>
+  <data name="SMTP_EMAIL" xml:space="preserve">
+    <value>smtp.gmail.com</value>
+  </data>
   <data name="STATUS" xml:space="preserve">
     <value>Status</value>
   </data>

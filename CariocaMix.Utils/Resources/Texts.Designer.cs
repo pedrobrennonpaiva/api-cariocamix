@@ -169,6 +169,15 @@ namespace CariocaMix.Utils.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to smtp.gmail.com.
+        /// </summary>
+        public static string SMTP_EMAIL {
+            get {
+                return ResourceManager.GetString("SMTP_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         public static string STATUS {

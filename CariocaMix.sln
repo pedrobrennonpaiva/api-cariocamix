@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CariocaMix.Service", "Cario
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CariocaMix.API", "CariocaMix.API\CariocaMix.API.csproj", "{491430F4-3B75-4FBB-9D09-19E39CE531EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CariocaMix.Utils", "CariocaMix.Utils\CariocaMix.Utils.csproj", "{BED3267A-1FF4-44BA-A563-BBD61BAAAD36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CariocaMix.Utils", "CariocaMix.Utils\CariocaMix.Utils.csproj", "{BED3267A-1FF4-44BA-A563-BBD61BAAAD36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CariocaMix.CrossCutting", "CariocaMix.CrossCutting\CariocaMix.CrossCutting.csproj", "{9C5C6F37-F3C7-4775-B757-85DE2B39D5F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{BED3267A-1FF4-44BA-A563-BBD61BAAAD36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BED3267A-1FF4-44BA-A563-BBD61BAAAD36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BED3267A-1FF4-44BA-A563-BBD61BAAAD36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C5C6F37-F3C7-4775-B757-85DE2B39D5F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C5C6F37-F3C7-4775-B757-85DE2B39D5F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C5C6F37-F3C7-4775-B757-85DE2B39D5F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C5C6F37-F3C7-4775-B757-85DE2B39D5F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{1CA77D89-CAFC-43F4-94EF-9C963809348D} = {B2158905-1977-42E8-9311-686F6A707E9C}
 		{491430F4-3B75-4FBB-9D09-19E39CE531EF} = {7D9F382D-86D8-45F9-810B-BDA8A18C1D9F}
 		{BED3267A-1FF4-44BA-A563-BBD61BAAAD36} = {177167F6-AFE1-4B6B-89A4-86076D1F8B12}
+		{9C5C6F37-F3C7-4775-B757-85DE2B39D5F3} = {8B6EB14D-6E1B-452D-89FF-C95E0FF7FF1E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3617EE48-7276-456C-B511-43258F6F2CFC}

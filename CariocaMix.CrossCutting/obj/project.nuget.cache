@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "D0FStPZXXu4FTSfQbwu2KYUqzdIyG11reMo8ds5ykpBznyqHYBFHlwXfsz1tkuP0Gp5ErXdJRhP7kHKdBmY7Ug==",
+  "dgSpecHash": "UQRx/QwkjghHbN86cXnMbh0m2ibYa6APTHycqmArdPt7Bepjll5cSje4U/fBUsumT77x6yPkczsoqKi5ggQGqQ==",
   "success": true,
-  "projectFilePath": "C:\\dev\\CariocaMix\\CariocaMix.Utils\\CariocaMix.Utils.csproj",
+  "projectFilePath": "C:\\dev\\CariocaMix\\CariocaMix.CrossCutting\\CariocaMix.CrossCutting.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.extensions.configuration.binder\\5.0.0\\microsoft.extensions.configuration.binder.5.0.0.nupkg.sha512",

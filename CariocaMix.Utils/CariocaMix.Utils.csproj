@@ -32,4 +32,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CariocaMix.CrossCutting\CariocaMix.CrossCutting.csproj" />
+  </ItemGroup>
+
 </Project>

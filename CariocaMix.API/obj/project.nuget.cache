@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9BOQ4l/k11jGDUaERTTi2TpB+N57oSV40TTqM11uq6hDhZDo83eHBZiMsMEUc8LVL+oJz9DTZ8bUhKlshNSTvw==",
+  "dgSpecHash": "ycC0Q2nnmhN1q3Wh49FhRw85F7X6g53y9auok52g5rYFw5XNJKWp8Tqtqe4o5G5Rx0MTCkX/j3FCZHFeP6qeGg==",
   "success": true,
   "projectFilePath": "C:\\dev\\CariocaMix\\CariocaMix.API\\CariocaMix.API.csproj",
   "expectedPackageFiles": [
@@ -23,6 +23,7 @@
     "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
     "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.extensions.configuration.binder\\5.0.0\\microsoft.extensions.configuration.binder.5.0.0.nupkg.sha512",
     "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.2\\microsoft.extensions.dependencyinjection.5.0.2.nupkg.sha512",
     "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.extensions.logging\\5.0.0\\microsoft.extensions.logging.5.0.0.nupkg.sha512",
