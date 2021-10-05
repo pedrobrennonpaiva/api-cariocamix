@@ -8,7 +8,7 @@ namespace CariocaMix.Domain.Interfaces.Services
     {
         Result Add(OrderProductAddModel request);
 
-        Result Update(OrderProductUpdateModel request);
+        Result Update(long id, OrderProductUpdateModel request);
 
         List<OrderProductDetailsModel> List();
 

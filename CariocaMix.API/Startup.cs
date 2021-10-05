@@ -1,12 +1,7 @@
-using CariocaMix.CrossCutting.Interfaces;
-using CariocaMix.CrossCutting.Services;
-using CariocaMix.Domain.Interfaces.Repositories;
-using CariocaMix.Domain.Interfaces.Services;
+using CariocaMix.API.Modules;
 using CariocaMix.Domain.Models.Token;
 using CariocaMix.Repository.Persistence;
-using CariocaMix.Repository.Persistence.Repositories;
 using CariocaMix.Service.Profiles;
-using CariocaMix.Service.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,13 +26,7 @@ namespace CariocaMix.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(_ => Configuration);
-            services.AddTransient<IRepositoryUser, RepositoryUser>();
-            services.AddTransient<IServiceUser, ServiceUser>();
-            services.AddScoped<IConfigurationHelper, ConfigurationHelper>();
-
-            services.AddDbContext<Context>();
-
+            services.ConfigurationDependencyInjection(Configuration);
             services.AddAutoMapper(typeof(UserProfile));
 
             services.AddControllers();

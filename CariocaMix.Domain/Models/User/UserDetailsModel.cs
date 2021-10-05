@@ -15,8 +15,6 @@ namespace CariocaMix.Domain.Models.User
 
         public string Email { get; set; }
 
-        public string Password { get; set; }
-
         public string NumberPhone { get; set; }
 
         public long Points { get; set; }

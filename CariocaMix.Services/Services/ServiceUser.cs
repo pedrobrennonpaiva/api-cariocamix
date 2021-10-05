@@ -6,6 +6,7 @@ using CariocaMix.Domain.Interfaces.Services;
 using CariocaMix.Domain.Models.Returns;
 using CariocaMix.Domain.Models.Token;
 using CariocaMix.Domain.Models.User;
+using CariocaMix.Utils.Email;
 using CariocaMix.Utils.Resources;
 using CariocaMix.Utils.Validations;
 using System;
@@ -18,11 +19,13 @@ namespace CariocaMix.Service.Services
     {
         private readonly IRepositoryUser _repositoryUser;
         private readonly IMapper _mapper;
+        private readonly ISendEmail _sendEmail;
 
-        public ServiceUser(IRepositoryUser repositoryUser, IMapper mapper)
+        public ServiceUser(IRepositoryUser repositoryUser, IMapper mapper, ISendEmail sendEmail)
         {
             _repositoryUser = repositoryUser;
             _mapper = mapper;
+            _sendEmail = sendEmail;
         }
 
         public Result GetById(long id)
@@ -114,7 +117,9 @@ namespace CariocaMix.Service.Services
                 _repositoryUser.Edit(user);
                 _repositoryUser.Commit();
 
-                return new Result(true, user);
+                _sendEmail.SendOneEmail("Teste", "Testando e-mail", user.Email);
+
+                return new Result(true, string.Format(Message.X0_ALTERADA_COM_SUCESSO, Texts.SENHA));
             }
             catch (Exception ex)
             {
@@ -158,7 +163,6 @@ namespace CariocaMix.Service.Services
                 _repositoryUser.Commit();
 
                 var resultObj = _mapper.Map<UserDetailsModel>(user);
-                resultObj.Password = null;
 
                 return new Result(true, resultObj);
             }
@@ -168,14 +172,14 @@ namespace CariocaMix.Service.Services
             }
         }
 
-        public Result Update(UserUpdateModel request)
+        public Result Update(long id, UserUpdateModel request)
         {
             if (request == null)
             {
                 return new Result(false, string.Format(Message.X0_DEVE_SER_PREENCHIDO, Texts.USUARIO));
             }
 
-            User user = _repositoryUser.GetById(request.Id);
+            User user = _repositoryUser.GetById(id);
 
             if (user == null)
                 return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
@@ -191,13 +195,12 @@ namespace CariocaMix.Service.Services
                 request.Password = user.Password;
 
                 var userUpdate = _mapper.Map<User>(request);
+                userUpdate.Id = id;
 
                 _repositoryUser.Edit(userUpdate);
                 _repositoryUser.Commit();
 
-                request.Password = null;
-
-                return new Result(true, request);
+                return new Result(true);
             }
             catch (Exception ex)
             {

@@ -8,7 +8,7 @@ namespace CariocaMix.Domain.Interfaces.Services
     {
         Result Add(StoreDayHourAddModel request);
 
-        Result Update(StoreDayHourUpdateModel request);
+        Result Update(long id, StoreDayHourUpdateModel request);
 
         List<StoreDayHourDetailsModel> List();
 

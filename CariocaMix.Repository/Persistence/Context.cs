@@ -1,21 +1,21 @@
-﻿using CariocaMix.Domain.Entities;
+﻿using CariocaMix.CrossCutting.Interfaces;
+using CariocaMix.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace CariocaMix.Repository.Persistence
 {
     public class Context : DbContext
     {
-        private readonly IConfiguration _config;
+        private readonly IConfigurationHelper _configurationHelper;
 
-        public Context(IConfiguration config)
+        public Context(IConfigurationHelper configurationHelper)
         {
-            _config = config;
+            _configurationHelper = configurationHelper;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = _config.GetConnectionString("Homolog");
+            var connectionString = _configurationHelper.GetString("ConnectionString");
             optionsBuilder.UseSqlServer(connectionString);
         }
 

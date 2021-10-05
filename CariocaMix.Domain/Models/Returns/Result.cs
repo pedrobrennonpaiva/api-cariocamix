@@ -2,6 +2,11 @@
 {
     public class Result
     {
+        public Result(bool isSuccess)
+        {
+            IsSuccess = isSuccess;
+        }
+
         public Result(bool isSuccess, string message)
         {
             IsSuccess = isSuccess;

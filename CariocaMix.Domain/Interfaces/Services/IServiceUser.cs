@@ -12,7 +12,7 @@ namespace CariocaMix.Domain.Interfaces.Services
 
         Result Add(UserAddModel request);
 
-        Result Update(UserUpdateModel request);
+        Result Update(long id, UserUpdateModel request);
 
         List<UserDetailsModel> List();
 

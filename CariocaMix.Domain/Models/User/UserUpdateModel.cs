@@ -3,7 +3,7 @@ using System;
 
 namespace CariocaMix.Domain.Models.User
 {
-    public class UserUpdateModel : BaseModel
+    public class UserUpdateModel
     {
         public string Name { get; set; }
 

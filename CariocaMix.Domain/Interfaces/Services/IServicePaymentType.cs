@@ -8,7 +8,7 @@ namespace CariocaMix.Domain.Interfaces.Services
     {
         Result Add(PaymentTypeAddModel request);
 
-        Result Update(PaymentTypeUpdateModel request);
+        Result Update(long id, PaymentTypeUpdateModel request);
 
         List<PaymentTypeDetailsModel> List();
 

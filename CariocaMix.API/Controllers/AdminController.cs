@@ -33,8 +33,7 @@ namespace CariocaMix.API.Controllers
         {
             try
             {
-                var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-                var validateToken = AuthenticationToken.ValidateTokenAdmin(token, id);
+                var validateToken = ValidateTokenAdmin(id);
 
                 if(!validateToken)
                 {
@@ -96,12 +95,19 @@ namespace CariocaMix.API.Controllers
             }
         }
 
-        [HttpPut]
-        public IActionResult Update(AdminUpdateModel model)
+        [HttpPut("{id}")]
+        public IActionResult Update(long id, AdminUpdateModel model)
         {
             try
             {
-                var result = _serviceAdmin.Update(model);
+                var validateToken = ValidateTokenAdmin(id);
+
+                if (!validateToken)
+                {
+                    return Unauthorized();
+                }
+
+                var result = _serviceAdmin.Update(id, model);
 
                 if (!result.IsSuccess)
                 {
@@ -110,10 +116,49 @@ namespace CariocaMix.API.Controllers
 
                 return Ok();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpPost("resetPassword/{id}&{newPassword}")]
+        public IActionResult ChangePassword(long id, string newPassword)
+        {
+            try
+            {
+                var validateToken = ValidateTokenAdmin(id);
+
+                if (!validateToken)
+                {
+                    return Unauthorized();
+                }
+
+                var result = _serviceAdmin.ChangePassword(new ChangePasswordModel(id, newPassword));
+
+                if (!result.IsSuccess)
+                {
+                    return BadRequest(result.Message);
+                }
+
+                return Ok(result.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        #region Privates
+
+        private bool ValidateTokenAdmin(long id)
+        {
+            var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+            var validateToken = AuthenticationToken.ValidateTokenAdmin(token, id);
+
+            return validateToken;
+        }
+
+        #endregion
     }
 }

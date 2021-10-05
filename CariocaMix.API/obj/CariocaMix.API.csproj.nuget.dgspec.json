@@ -73,6 +73,10 @@
               "target": "Package",
               "version": "[5.0.10, )"
             },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.11.1, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
@@ -266,6 +270,9 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
+              "C:\\dev\\CariocaMix\\CariocaMix.CrossCutting\\CariocaMix.CrossCutting.csproj": {
+                "projectPath": "C:\\dev\\CariocaMix\\CariocaMix.CrossCutting\\CariocaMix.CrossCutting.csproj"
+              },
               "C:\\dev\\CariocaMix\\CariocaMix.Domain\\CariocaMix.Domain.csproj": {
                 "projectPath": "C:\\dev\\CariocaMix\\CariocaMix.Domain\\CariocaMix.Domain.csproj"
               }

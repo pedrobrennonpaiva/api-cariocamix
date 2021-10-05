@@ -82,7 +82,7 @@ namespace CariocaMix.Service.Services
             return addressDetails;
         }
 
-        public Result Update(AddressUpdateModel request)
+        public Result Update(long id, AddressUpdateModel request)
         {
             try
             {

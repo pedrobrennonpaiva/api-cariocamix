@@ -82,7 +82,7 @@ namespace CariocaMix.Service.Services
             return storeDayHourDetails;
         }
 
-        public Result Update(StoreDayHourUpdateModel request)
+        public Result Update(long id, StoreDayHourUpdateModel request)
         {
             try
             {

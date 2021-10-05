@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CariocaMix.API.Controllers
 {
@@ -26,16 +27,15 @@ namespace CariocaMix.API.Controllers
             return Ok(_serviceUser.List());
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("{id}")]
         public IActionResult GetById(long id)
         {
             try
             {
-                var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-                var validateToken = AuthenticationToken.ValidateTokenUser(token, id);
+                var validateToken = ValidateTokenUser(id);
 
-                if(!validateToken)
+                if (!validateToken)
                 {
                     return Unauthorized();
                 }
@@ -95,12 +95,19 @@ namespace CariocaMix.API.Controllers
             }
         }
 
-        [HttpPut]
-        public IActionResult Update(UserUpdateModel model)
+        [HttpPut("{id}")]
+        public IActionResult Update(long id, UserUpdateModel model)
         {
             try
             {
-                var result = _serviceUser.Update(model);
+                var validateToken = ValidateTokenUser(id);
+
+                if (!validateToken)
+                {
+                    return Unauthorized();
+                }
+
+                var result = _serviceUser.Update(id, model);
 
                 if (!result.IsSuccess)
                 {
@@ -114,5 +121,44 @@ namespace CariocaMix.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpPost("resetPassword/{id}&{newPassword}")]
+        public IActionResult ChangePassword(long id, string newPassword)
+        {
+            try
+            {
+                var validateToken = ValidateTokenUser(id);
+
+                if (!validateToken)
+                {
+                    return Unauthorized();
+                }
+
+                var result = _serviceUser.ChangePassword(new ChangePasswordModel(id, newPassword));
+
+                if (!result.IsSuccess)
+                {
+                    return BadRequest(result.Message);
+                }
+
+                return Ok(result.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        #region Privates
+
+        private bool ValidateTokenUser(long id)
+        {
+            var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+            var validateToken = AuthenticationToken.ValidateTokenUser(token, id);
+
+            return validateToken;
+        }
+
+        #endregion
     }
 }

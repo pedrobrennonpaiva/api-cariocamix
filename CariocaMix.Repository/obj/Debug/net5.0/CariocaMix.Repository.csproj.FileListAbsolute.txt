@@ -34,3 +34,5 @@ C:\dev\CariocaMix\CariocaMix.Repository\obj\Debug\net5.0\CariocaMix.Repository.d
 C:\dev\CariocaMix\CariocaMix.Repository\obj\Debug\net5.0\ref\CariocaMix.Repository.dll
 C:\dev\CariocaMix\CariocaMix.Repository\obj\Debug\net5.0\CariocaMix.Repository.pdb
 C:\dev\CariocaMix\CariocaMix.Repository\obj\Debug\net5.0\CariocaMix.Repository.genruntimeconfig.cache
+C:\dev\CariocaMix\CariocaMix.Repository\bin\Debug\net5.0\CariocaMix.CrossCutting.dll
+C:\dev\CariocaMix\CariocaMix.Repository\bin\Debug\net5.0\CariocaMix.CrossCutting.pdb

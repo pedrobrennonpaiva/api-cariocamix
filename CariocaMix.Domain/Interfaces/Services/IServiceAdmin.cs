@@ -13,7 +13,7 @@ namespace CariocaMix.Domain.Interfaces.Services
 
         Result Add(AdminAddModel request);
 
-        Result Update(AdminUpdateModel request);
+        Result Update(long id, AdminUpdateModel request);
 
         List<AdminDetailsModel> List();
 

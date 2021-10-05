@@ -169,14 +169,14 @@ namespace CariocaMix.Service.Services
             }
         }
 
-        public Result Update(AdminUpdateModel request)
+        public Result Update(long id, AdminUpdateModel request)
         {
             if (request == null)
             {
                 return new Result(false, string.Format(Message.X0_DEVE_SER_PREENCHIDO, Texts.USUARIO));
             }
 
-            Admin admin = _repositoryAdmin.GetById(request.Id);
+            Admin admin = _repositoryAdmin.GetById(id);
 
             if (admin == null)
                 return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
@@ -192,13 +192,12 @@ namespace CariocaMix.Service.Services
                 request.Password = admin.Password;
 
                 var adminUpdate = _mapper.Map<Admin>(request);
+                adminUpdate.Id = id;
 
                 _repositoryAdmin.Edit(adminUpdate);
                 _repositoryAdmin.Commit();
 
-                request.Password = null;
-
-                return new Result(true, request);
+                return new Result(true);
             }
             catch (Exception ex)
             {

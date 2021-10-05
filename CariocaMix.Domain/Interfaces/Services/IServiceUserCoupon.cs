@@ -8,7 +8,7 @@ namespace CariocaMix.Domain.Interfaces.Services
     {
         Result Add(UserCouponAddModel request);
 
-        Result Update(UserCouponUpdateModel request);
+        Result Update(long id, UserCouponUpdateModel request);
 
         List<UserCouponDetailsModel> List();
 
