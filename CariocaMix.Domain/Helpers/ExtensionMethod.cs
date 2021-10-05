@@ -19,5 +19,18 @@ namespace CariocaMix.Domain.Helpers
             }
             return user;
         }
+        public static IEnumerable<Admin> WithoutPasswords(this IEnumerable<Admin> users)
+        {
+            return users.Select(x => x.WithoutPassword());
+        }
+
+        public static Admin WithoutPassword(this Admin user)
+        {
+            if (user != null)
+            {
+                user.Password = null;
+            }
+            return user;
+        }
     }
 }

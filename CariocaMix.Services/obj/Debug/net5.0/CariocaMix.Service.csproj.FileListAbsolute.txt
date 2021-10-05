@@ -30,3 +30,5 @@ C:\dev\CariocaMix\CariocaMix.Services\obj\Debug\net5.0\CariocaMix.Service.csproj
 C:\dev\CariocaMix\CariocaMix.Services\obj\Debug\net5.0\CariocaMix.Service.dll
 C:\dev\CariocaMix\CariocaMix.Services\obj\Debug\net5.0\ref\CariocaMix.Service.dll
 C:\dev\CariocaMix\CariocaMix.Services\obj\Debug\net5.0\CariocaMix.Service.pdb
+C:\dev\CariocaMix\CariocaMix.Services\bin\Debug\net5.0\CariocaMix.CrossCutting.dll
+C:\dev\CariocaMix\CariocaMix.Services\bin\Debug\net5.0\CariocaMix.CrossCutting.pdb

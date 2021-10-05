@@ -94,5 +94,25 @@ namespace CariocaMix.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpPut]
+        public IActionResult Update(UserUpdateModel model)
+        {
+            try
+            {
+                var result = _serviceUser.Update(model);
+
+                if (!result.IsSuccess)
+                {
+                    return BadRequest(result);
+                }
+
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
     }
 }
