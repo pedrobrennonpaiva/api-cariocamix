@@ -17,10 +17,12 @@ C:\dev\CariocaMix\CariocaMix.Services\bin\Debug\net5.0\CariocaMix.Service.deps.j
 C:\dev\CariocaMix\CariocaMix.Services\bin\Debug\net5.0\CariocaMix.Service.dll
 C:\dev\CariocaMix\CariocaMix.Services\bin\Debug\net5.0\ref\CariocaMix.Service.dll
 C:\dev\CariocaMix\CariocaMix.Services\bin\Debug\net5.0\CariocaMix.Service.pdb
+C:\dev\CariocaMix\CariocaMix.Services\bin\Debug\net5.0\CariocaMix.CrossCutting.dll
 C:\dev\CariocaMix\CariocaMix.Services\bin\Debug\net5.0\CariocaMix.Domain.dll
 C:\dev\CariocaMix\CariocaMix.Services\bin\Debug\net5.0\CariocaMix.Utils.dll
 C:\dev\CariocaMix\CariocaMix.Services\bin\Debug\net5.0\CariocaMix.Domain.pdb
 C:\dev\CariocaMix\CariocaMix.Services\bin\Debug\net5.0\CariocaMix.Utils.pdb
+C:\dev\CariocaMix\CariocaMix.Services\bin\Debug\net5.0\CariocaMix.CrossCutting.pdb
 C:\dev\CariocaMix\CariocaMix.Services\obj\Debug\net5.0\CariocaMix.Service.csproj.AssemblyReference.cache
 C:\dev\CariocaMix\CariocaMix.Services\obj\Debug\net5.0\CariocaMix.Service.GeneratedMSBuildEditorConfig.editorconfig
 C:\dev\CariocaMix\CariocaMix.Services\obj\Debug\net5.0\CariocaMix.Service.AssemblyInfoInputs.cache
@@ -30,5 +32,3 @@ C:\dev\CariocaMix\CariocaMix.Services\obj\Debug\net5.0\CariocaMix.Service.csproj
 C:\dev\CariocaMix\CariocaMix.Services\obj\Debug\net5.0\CariocaMix.Service.dll
 C:\dev\CariocaMix\CariocaMix.Services\obj\Debug\net5.0\ref\CariocaMix.Service.dll
 C:\dev\CariocaMix\CariocaMix.Services\obj\Debug\net5.0\CariocaMix.Service.pdb
-C:\dev\CariocaMix\CariocaMix.Services\bin\Debug\net5.0\CariocaMix.CrossCutting.dll
-C:\dev\CariocaMix\CariocaMix.Services\bin\Debug\net5.0\CariocaMix.CrossCutting.pdb

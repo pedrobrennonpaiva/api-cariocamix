@@ -28,7 +28,7 @@ namespace CariocaMix.Service.Services
             {
                 var userCoupon = _mapper.Map<UserCoupon>(request);
 
-                _repositoryUserCoupon.Add(request);
+                _repositoryUserCoupon.Add(userCoupon);
                 _repositoryUserCoupon.Commit();
 
                 var resultObj = _mapper.Map<UserCouponDetailsModel>(userCoupon);
@@ -87,8 +87,9 @@ namespace CariocaMix.Service.Services
             try
             {
                 var userCoupon = _mapper.Map<UserCoupon>(request);
+                userCoupon.Id = id;
 
-                _repositoryUserCoupon.Edit(request);
+                _repositoryUserCoupon.Edit(userCoupon);
                 _repositoryUserCoupon.Commit();
 
                 var resultObj = _mapper.Map<UserCouponDetailsModel>(userCoupon);

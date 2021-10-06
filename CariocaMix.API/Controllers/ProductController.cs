@@ -64,12 +64,12 @@ namespace CariocaMix.API.Controllers
             }
         }
 
-        [HttpPut]
-        public IActionResult Update(ProductUpdateModel model)
+        [HttpPut("{id}")]
+        public IActionResult Update(long id, ProductUpdateModel model)
         {
             try
             {
-                var result = _serviceProduct.Update(model);
+                var result = _serviceProduct.Update(id, model);
 
                 if (!result.IsSuccess)
                 {

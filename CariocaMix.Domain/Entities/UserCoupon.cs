@@ -1,5 +1,4 @@
 ﻿using CariocaMix.Domain.Entities.Base;
-using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CariocaMix.Domain.Entities

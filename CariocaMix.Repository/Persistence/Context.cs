@@ -39,5 +39,19 @@ namespace CariocaMix.Repository.Persistence
         public virtual DbSet<StoreDayHour> StoreDayHours { get; set; }
         public virtual DbSet<User> Users { get; set; }   
         public virtual DbSet<UserCoupon> UserCoupons { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserCoupon>(p => {
+                p.ToTable("UserCoupon");
+                p.HasKey(p => p.Id);
+
+                p
+                    .HasOne(pp => pp.User)
+                    .WithOne()
+                    //.HasForeignKey(r => r.)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+        }
     }
 }

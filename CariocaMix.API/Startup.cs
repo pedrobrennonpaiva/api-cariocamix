@@ -26,8 +26,8 @@ namespace CariocaMix.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigurationMapper();
             services.ConfigurationDependencyInjection(Configuration);
-            services.AddAutoMapper(typeof(UserProfile));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

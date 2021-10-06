@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CariocaMix.API.Controllers
 {
@@ -27,7 +26,7 @@ namespace CariocaMix.API.Controllers
             return Ok(_serviceUser.List());
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult GetById(long id)
         {
@@ -71,7 +70,7 @@ namespace CariocaMix.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
 
@@ -89,7 +88,7 @@ namespace CariocaMix.API.Controllers
 
                 return Created("", result.ReturnObject);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
@@ -116,7 +115,7 @@ namespace CariocaMix.API.Controllers
 
                 return Ok();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
