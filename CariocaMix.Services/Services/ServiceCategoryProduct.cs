@@ -28,7 +28,7 @@ namespace CariocaMix.Service.Services
             {
                 var categoryProduct = _mapper.Map<CategoryProduct>(request);
 
-                _repositoryCategoryProduct.Add(request);
+                _repositoryCategoryProduct.Add(categoryProduct);
                 _repositoryCategoryProduct.Commit();
 
                 var resultObj = _mapper.Map<CategoryProductDetailsModel>(categoryProduct);
@@ -87,8 +87,9 @@ namespace CariocaMix.Service.Services
             try
             {
                 var categoryProduct = _mapper.Map<CategoryProduct>(request);
+                categoryProduct.Id = id;
 
-                _repositoryCategoryProduct.Edit(request);
+                _repositoryCategoryProduct.Edit(categoryProduct);
                 _repositoryCategoryProduct.Commit();
 
                 var resultObj = _mapper.Map<CategoryProductDetailsModel>(categoryProduct);

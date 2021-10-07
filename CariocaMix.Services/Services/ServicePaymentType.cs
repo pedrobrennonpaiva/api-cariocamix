@@ -28,7 +28,7 @@ namespace CariocaMix.Service.Services
             {
                 var paymentType = _mapper.Map<PaymentType>(request);
 
-                _repositoryPaymentType.Add(request);
+                _repositoryPaymentType.Add(paymentType);
                 _repositoryPaymentType.Commit();
 
                 var resultObj = _mapper.Map<PaymentTypeDetailsModel>(paymentType);
@@ -87,8 +87,9 @@ namespace CariocaMix.Service.Services
             try
             {
                 var paymentType = _mapper.Map<PaymentType>(request);
+                paymentType.Id = id;
 
-                _repositoryPaymentType.Edit(request);
+                _repositoryPaymentType.Edit(paymentType);
                 _repositoryPaymentType.Commit();
 
                 var resultObj = _mapper.Map<PaymentTypeDetailsModel>(paymentType);

@@ -28,7 +28,7 @@ namespace CariocaMix.Service.Services
             {
                 var deliveryStatus = _mapper.Map<DeliveryStatus>(request);
 
-                _repositoryDeliveryStatus.Add(request);
+                _repositoryDeliveryStatus.Add(deliveryStatus);
                 _repositoryDeliveryStatus.Commit();
 
                 var resultObj = _mapper.Map<DeliveryStatusDetailsModel>(deliveryStatus);
@@ -87,8 +87,9 @@ namespace CariocaMix.Service.Services
             try
             {
                 var deliveryStatus = _mapper.Map<DeliveryStatus>(request);
+                deliveryStatus.Id = id;
 
-                _repositoryDeliveryStatus.Edit(request);
+                _repositoryDeliveryStatus.Edit(deliveryStatus);
                 _repositoryDeliveryStatus.Commit();
 
                 var resultObj = _mapper.Map<DeliveryStatusDetailsModel>(deliveryStatus);

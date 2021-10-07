@@ -28,7 +28,7 @@ namespace CariocaMix.Service.Services
             {
                 var deliveryTax = _mapper.Map<DeliveryTax>(request);
 
-                _repositoryDeliveryTax.Add(request);
+                _repositoryDeliveryTax.Add(deliveryTax);
                 _repositoryDeliveryTax.Commit();
 
                 var resultObj = _mapper.Map<DeliveryTaxDetailsModel>(deliveryTax);
@@ -87,8 +87,9 @@ namespace CariocaMix.Service.Services
             try
             {
                 var deliveryTax = _mapper.Map<DeliveryTax>(request);
+                deliveryTax.Id = id;
 
-                _repositoryDeliveryTax.Edit(request);
+                _repositoryDeliveryTax.Edit(deliveryTax);
                 _repositoryDeliveryTax.Commit();
 
                 var resultObj = _mapper.Map<DeliveryTaxDetailsModel>(deliveryTax);

@@ -28,7 +28,7 @@ namespace CariocaMix.Service.Services
             {
                 var orderProduct = _mapper.Map<OrderProduct>(request);
 
-                _repositoryOrderProduct.Add(request);
+                _repositoryOrderProduct.Add(orderProduct);
                 _repositoryOrderProduct.Commit();
 
                 var resultObj = _mapper.Map<OrderProductDetailsModel>(orderProduct);
@@ -87,8 +87,9 @@ namespace CariocaMix.Service.Services
             try
             {
                 var orderProduct = _mapper.Map<OrderProduct>(request);
+                orderProduct.Id = id;
 
-                _repositoryOrderProduct.Edit(request);
+                _repositoryOrderProduct.Edit(orderProduct);
                 _repositoryOrderProduct.Commit();
 
                 var resultObj = _mapper.Map<OrderProductDetailsModel>(orderProduct);
