@@ -8,6 +8,7 @@ using CariocaMix.Utils.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CariocaMix.Service.Services
 {
@@ -71,6 +72,18 @@ namespace CariocaMix.Service.Services
                 return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.CUPOM));
 
             var userCouponDetails = _mapper.Map<UserCouponDetailsModel>(repoUserCoupon);
+
+            return new Result(true, userCouponDetails);
+        }
+
+        public Result ListByUserId(long userId)
+        {
+            var repoUserCoupon = _repositoryUserCoupon.ListBy(x => x.UserId == userId);
+
+            if (repoUserCoupon == null)
+                return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.CUPOM));
+
+            var userCouponDetails = _mapper.Map<List<UserCouponDetailsModel>>(repoUserCoupon);
 
             return new Result(true, userCouponDetails);
         }

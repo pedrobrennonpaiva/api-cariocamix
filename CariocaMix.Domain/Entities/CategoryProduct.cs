@@ -9,10 +9,10 @@ namespace CariocaMix.Domain.Entities
     {
         [ForeignKey("Category")]
         public long CategoryId { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         [ForeignKey("Product")]
         public long ProductId { get; set; }
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace CariocaMix.Repository.Persistence
     {
         private readonly IConfigurationHelper _configurationHelper;
 
-        public Context(IConfigurationHelper configurationHelper)
+        public Context(IConfigurationHelper configurationHelper, DbContextOptions<Context> options) : base(options)
         {
             _configurationHelper = configurationHelper;
         }
@@ -16,7 +16,7 @@ namespace CariocaMix.Repository.Persistence
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = _configurationHelper.GetString("ConnectionString");
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(connectionString);
         }
 
         public virtual DbSet<Address> Addresses { get; set; }

@@ -28,7 +28,7 @@ namespace CariocaMix.Service.Services
             {
                 var storeDayHour = _mapper.Map<StoreDayHour>(request);
 
-                _repositoryStoreDayHour.Add(request);
+                _repositoryStoreDayHour.Add(storeDayHour);
                 _repositoryStoreDayHour.Commit();
 
                 var resultObj = _mapper.Map<StoreDayHourDetailsModel>(storeDayHour);
@@ -87,8 +87,9 @@ namespace CariocaMix.Service.Services
             try
             {
                 var storeDayHour = _mapper.Map<StoreDayHour>(request);
+                storeDayHour.Id = id;
 
-                _repositoryStoreDayHour.Edit(request);
+                _repositoryStoreDayHour.Edit(storeDayHour);
                 _repositoryStoreDayHour.Commit();
 
                 var resultObj = _mapper.Map<StoreDayHourDetailsModel>(storeDayHour);

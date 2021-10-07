@@ -1,6 +1,7 @@
 ﻿using CariocaMix.Domain.Models.Returns;
 using CariocaMix.Domain.Models.UserCoupon;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CariocaMix.Domain.Interfaces.Services
 {
@@ -15,5 +16,7 @@ namespace CariocaMix.Domain.Interfaces.Services
         Result Delete(long id);
 
         Result GetById(long id);
+
+        Result ListByUserId(long userId);
     }
 }

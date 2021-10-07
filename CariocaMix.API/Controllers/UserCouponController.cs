@@ -3,11 +3,12 @@ using CariocaMix.Domain.Models.UserCoupon;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace CariocaMix.API.Controllers
 {
     [ApiController]
-    [Route("user/coupon")]
+    [Route("userCoupon")]
     public class UserCouponController : ControllerBase
     {
         private readonly IServiceUserCoupon _serviceUserCoupon;
@@ -20,7 +21,8 @@ namespace CariocaMix.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_serviceUserCoupon.List());
+            var results = _serviceUserCoupon.List();
+            return Ok(results);
         }
 
         [Authorize]
@@ -30,6 +32,27 @@ namespace CariocaMix.API.Controllers
             try
             {
                 var result = _serviceUserCoupon.GetById(id);
+
+                if (!result.IsSuccess)
+                {
+                    return NotFound(result);
+                }
+
+                return Ok(result.ReturnObject);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [Authorize]
+        [HttpGet("user/{userId}")]
+        public IActionResult ListByUserId(long userId)
+        {
+            try
+            {
+                var result = _serviceUserCoupon.ListByUserId(userId);
 
                 if (!result.IsSuccess)
                 {

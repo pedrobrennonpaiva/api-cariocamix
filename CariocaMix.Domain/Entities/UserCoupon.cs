@@ -8,11 +8,11 @@ namespace CariocaMix.Domain.Entities
     {
         [ForeignKey("User")]
         public long UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         [ForeignKey("Coupon")]
         public long CouponId { get; set; }
-        public Coupon Coupon { get; set; }
+        public virtual Coupon Coupon { get; set; }
 
         public bool IsUsed { get; set; }
     }

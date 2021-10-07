@@ -9,7 +9,7 @@ namespace CariocaMix.Domain.Entities
     {
         [ForeignKey("Store")]
         public long StoreId { get; set; }
-        public Store Store { get; set; }
+        public virtual Store Store { get; set; }
 
         public string Cep { get; set; }
 

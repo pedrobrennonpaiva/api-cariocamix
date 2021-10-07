@@ -162,3 +162,5 @@ C:\dev\CariocaMix\CariocaMix.API\obj\Debug\net5.0\CariocaMix.API.dll
 C:\dev\CariocaMix\CariocaMix.API\obj\Debug\net5.0\ref\CariocaMix.API.dll
 C:\dev\CariocaMix\CariocaMix.API\obj\Debug\net5.0\CariocaMix.API.pdb
 C:\dev\CariocaMix\CariocaMix.API\obj\Debug\net5.0\CariocaMix.API.genruntimeconfig.cache
+C:\dev\CariocaMix\CariocaMix.API\bin\Debug\net5.0\Castle.Core.dll
+C:\dev\CariocaMix\CariocaMix.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Proxies.dll

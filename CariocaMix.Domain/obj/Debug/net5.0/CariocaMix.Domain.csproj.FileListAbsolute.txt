@@ -20,3 +20,4 @@ C:\dev\CariocaMix\CariocaMix.Domain\obj\Debug\net5.0\CariocaMix.Domain.csproj.Co
 C:\dev\CariocaMix\CariocaMix.Domain\obj\Debug\net5.0\CariocaMix.Domain.dll
 C:\dev\CariocaMix\CariocaMix.Domain\obj\Debug\net5.0\ref\CariocaMix.Domain.dll
 C:\dev\CariocaMix\CariocaMix.Domain\obj\Debug\net5.0\CariocaMix.Domain.pdb
+C:\dev\CariocaMix\CariocaMix.Domain\obj\Debug\net5.0\CariocaMix.Domain.csproj.AssemblyReference.cache

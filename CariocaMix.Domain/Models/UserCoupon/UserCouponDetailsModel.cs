@@ -8,6 +8,8 @@
 
         public long CouponId { get; set; }
 
+        public Entities.Coupon Coupon { get; set; }
+
         public bool IsUsed { get; set; }
     }
 }
