@@ -1,5 +1,5 @@
 ﻿using CariocaMix.Domain.Interfaces.Services;
-using CariocaMix.Domain.Models.Coupon;
+using CariocaMix.Domain.Models.ProductItem;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,20 +7,21 @@ using Microsoft.AspNetCore.Mvc;
 namespace CariocaMix.API.Controllers
 {
     [ApiController]
-    [Route("coupon")]
-    public class CouponController : ControllerBase
+    [Route("productItem")]
+    public class ProductItemController : ControllerBase
     {
-        private readonly IServiceCoupon _serviceCoupon;
+        private readonly IServiceProductItem _serviceProductItem;
 
-        public CouponController(IServiceCoupon serviceCoupon)
+        public ProductItemController(IServiceProductItem serviceProductItem)
         {
-            _serviceCoupon = serviceCoupon;
+            _serviceProductItem = serviceProductItem;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_serviceCoupon.List());
+            var results = _serviceProductItem.List();
+            return Ok(results);
         }
 
         [Authorize]
@@ -29,7 +30,7 @@ namespace CariocaMix.API.Controllers
         {
             try
             {
-                var result = _serviceCoupon.GetById(id);
+                var result = _serviceProductItem.GetById(id);
 
                 if (!result.IsSuccess)
                 {
@@ -44,13 +45,13 @@ namespace CariocaMix.API.Controllers
             }
         }
 
-        [Authorize]
-        [HttpGet("code/{code}")]
-        public IActionResult GetByCode(string code)
+        //[Authorize]
+        [HttpGet("product/{productId}")]
+        public IActionResult ListByProductId(long productId)
         {
             try
             {
-                var result = _serviceCoupon.GetByCode(code);
+                var result = _serviceProductItem.ListByProductId(productId);
 
                 if (!result.IsSuccess)
                 {
@@ -66,11 +67,11 @@ namespace CariocaMix.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(CouponAddModel model)
+        public IActionResult Post(ProductItemAddModel model)
         {
             try
             {
-                var result = _serviceCoupon.Add(model);
+                var result = _serviceProductItem.Add(model);
 
                 if (!result.IsSuccess)
                 {
@@ -86,11 +87,11 @@ namespace CariocaMix.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(long id, CouponUpdateModel model)
+        public IActionResult Update(long id, ProductItemUpdateModel model)
         {
             try
             {
-                var result = _serviceCoupon.Update(id, model);
+                var result = _serviceProductItem.Update(id, model);
 
                 if (!result.IsSuccess)
                 {

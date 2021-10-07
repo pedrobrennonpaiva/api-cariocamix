@@ -75,6 +75,18 @@ namespace CariocaMix.Service.Services
             return new Result(true, couponDetails);
         }
 
+        public Result GetByCode(string code)
+        {
+            var repoCoupon = _repositoryCoupon.GetBy(x => x.Code.Equals(code));
+
+            if (repoCoupon == null)
+                return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.STATUS));
+
+            var couponDetails = _mapper.Map<CouponDetailsModel>(repoCoupon);
+
+            return new Result(true, couponDetails);
+        }
+
         public List<CouponDetailsModel> List()
         {
             var repoCoupons = _repositoryCoupon.List().ToList();

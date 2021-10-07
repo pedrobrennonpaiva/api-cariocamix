@@ -75,6 +75,18 @@ namespace CariocaMix.Service.Services
             return new Result(true, addressDetails);
         }
 
+        public Result ListByUserId(long userId)
+        {
+            var repoAddress = _repositoryAddress.ListBy(x => x.UserId == userId).ToList();
+
+            if (repoAddress == null)
+                return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.ENDERECO));
+
+            var addressDetails = _mapper.Map<List<AddressDetailsModel>>(repoAddress);
+
+            return new Result(true, addressDetails);
+        }
+
         public List<AddressDetailsModel> List()
         {
             var repoAddresss = _repositoryAddress.List().ToList();

@@ -1,26 +1,28 @@
 ﻿using CariocaMix.Domain.Interfaces.Services;
-using CariocaMix.Domain.Models.Coupon;
+using CariocaMix.Domain.Models.Address;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace CariocaMix.API.Controllers
 {
     [ApiController]
-    [Route("coupon")]
-    public class CouponController : ControllerBase
+    [Route("address")]
+    public class AddressController : ControllerBase
     {
-        private readonly IServiceCoupon _serviceCoupon;
+        private readonly IServiceAddress _serviceAddress;
 
-        public CouponController(IServiceCoupon serviceCoupon)
+        public AddressController(IServiceAddress serviceAddress)
         {
-            _serviceCoupon = serviceCoupon;
+            _serviceAddress = serviceAddress;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_serviceCoupon.List());
+            var results = _serviceAddress.List();
+            return Ok(results);
         }
 
         [Authorize]
@@ -29,7 +31,7 @@ namespace CariocaMix.API.Controllers
         {
             try
             {
-                var result = _serviceCoupon.GetById(id);
+                var result = _serviceAddress.GetById(id);
 
                 if (!result.IsSuccess)
                 {
@@ -44,13 +46,13 @@ namespace CariocaMix.API.Controllers
             }
         }
 
-        [Authorize]
-        [HttpGet("code/{code}")]
-        public IActionResult GetByCode(string code)
+        //[Authorize]
+        [HttpGet("user/{userId}")]
+        public IActionResult ListByUserId(long userId)
         {
             try
             {
-                var result = _serviceCoupon.GetByCode(code);
+                var result = _serviceAddress.ListByUserId(userId);
 
                 if (!result.IsSuccess)
                 {
@@ -66,11 +68,11 @@ namespace CariocaMix.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(CouponAddModel model)
+        public IActionResult Post(AddressAddModel model)
         {
             try
             {
-                var result = _serviceCoupon.Add(model);
+                var result = _serviceAddress.Add(model);
 
                 if (!result.IsSuccess)
                 {
@@ -86,11 +88,11 @@ namespace CariocaMix.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(long id, CouponUpdateModel model)
+        public IActionResult Update(long id, AddressUpdateModel model)
         {
             try
             {
-                var result = _serviceCoupon.Update(id, model);
+                var result = _serviceAddress.Update(id, model);
 
                 if (!result.IsSuccess)
                 {

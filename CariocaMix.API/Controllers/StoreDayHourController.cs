@@ -1,5 +1,5 @@
 ﻿using CariocaMix.Domain.Interfaces.Services;
-using CariocaMix.Domain.Models.Coupon;
+using CariocaMix.Domain.Models.StoreDayHour;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,20 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace CariocaMix.API.Controllers
 {
     [ApiController]
-    [Route("coupon")]
-    public class CouponController : ControllerBase
+    [Route("storeDayHour")]
+    public class StoreDayHourController : ControllerBase
     {
-        private readonly IServiceCoupon _serviceCoupon;
+        private readonly IServiceStoreDayHour _serviceStoreDayHour;
 
-        public CouponController(IServiceCoupon serviceCoupon)
+        public StoreDayHourController(IServiceStoreDayHour serviceStoreDayHour)
         {
-            _serviceCoupon = serviceCoupon;
+            _serviceStoreDayHour = serviceStoreDayHour;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_serviceCoupon.List());
+            return Ok(_serviceStoreDayHour.List());
         }
 
         [Authorize]
@@ -29,28 +29,7 @@ namespace CariocaMix.API.Controllers
         {
             try
             {
-                var result = _serviceCoupon.GetById(id);
-
-                if (!result.IsSuccess)
-                {
-                    return NotFound(result);
-                }
-
-                return Ok(result.ReturnObject);
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
-        }
-
-        [Authorize]
-        [HttpGet("code/{code}")]
-        public IActionResult GetByCode(string code)
-        {
-            try
-            {
-                var result = _serviceCoupon.GetByCode(code);
+                var result = _serviceStoreDayHour.GetById(id);
 
                 if (!result.IsSuccess)
                 {
@@ -66,11 +45,11 @@ namespace CariocaMix.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(CouponAddModel model)
+        public IActionResult Post(StoreDayHourAddModel model)
         {
             try
             {
-                var result = _serviceCoupon.Add(model);
+                var result = _serviceStoreDayHour.Add(model);
 
                 if (!result.IsSuccess)
                 {
@@ -86,11 +65,11 @@ namespace CariocaMix.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(long id, CouponUpdateModel model)
+        public IActionResult Update(long id, StoreDayHourUpdateModel model)
         {
             try
             {
-                var result = _serviceCoupon.Update(id, model);
+                var result = _serviceStoreDayHour.Update(id, model);
 
                 if (!result.IsSuccess)
                 {

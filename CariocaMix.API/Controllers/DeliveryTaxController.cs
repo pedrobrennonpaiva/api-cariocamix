@@ -1,5 +1,5 @@
 ﻿using CariocaMix.Domain.Interfaces.Services;
-using CariocaMix.Domain.Models.Coupon;
+using CariocaMix.Domain.Models.DeliveryTax;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,20 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace CariocaMix.API.Controllers
 {
     [ApiController]
-    [Route("coupon")]
-    public class CouponController : ControllerBase
+    [Route("deliveryTax")]
+    public class DeliveryTaxController : ControllerBase
     {
-        private readonly IServiceCoupon _serviceCoupon;
+        private readonly IServiceDeliveryTax _serviceDeliveryTax;
 
-        public CouponController(IServiceCoupon serviceCoupon)
+        public DeliveryTaxController(IServiceDeliveryTax serviceDeliveryTax)
         {
-            _serviceCoupon = serviceCoupon;
+            _serviceDeliveryTax = serviceDeliveryTax;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_serviceCoupon.List());
+            return Ok(_serviceDeliveryTax.List());
         }
 
         [Authorize]
@@ -29,28 +29,7 @@ namespace CariocaMix.API.Controllers
         {
             try
             {
-                var result = _serviceCoupon.GetById(id);
-
-                if (!result.IsSuccess)
-                {
-                    return NotFound(result);
-                }
-
-                return Ok(result.ReturnObject);
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
-        }
-
-        [Authorize]
-        [HttpGet("code/{code}")]
-        public IActionResult GetByCode(string code)
-        {
-            try
-            {
-                var result = _serviceCoupon.GetByCode(code);
+                var result = _serviceDeliveryTax.GetById(id);
 
                 if (!result.IsSuccess)
                 {
@@ -66,11 +45,11 @@ namespace CariocaMix.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(CouponAddModel model)
+        public IActionResult Post(DeliveryTaxAddModel model)
         {
             try
             {
-                var result = _serviceCoupon.Add(model);
+                var result = _serviceDeliveryTax.Add(model);
 
                 if (!result.IsSuccess)
                 {
@@ -86,11 +65,11 @@ namespace CariocaMix.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(long id, CouponUpdateModel model)
+        public IActionResult Update(long id, DeliveryTaxUpdateModel model)
         {
             try
             {
-                var result = _serviceCoupon.Update(id, model);
+                var result = _serviceDeliveryTax.Update(id, model);
 
                 if (!result.IsSuccess)
                 {

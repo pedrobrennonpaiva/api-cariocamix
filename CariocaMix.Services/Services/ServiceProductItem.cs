@@ -75,6 +75,18 @@ namespace CariocaMix.Service.Services
             return new Result(true, productItemDetails);
         }
 
+        public Result ListByProductId(long productId)
+        {
+            var repoProductItem = _repositoryProductItem.ListBy(x => x.ProductId == productId).ToList();
+
+            if (repoProductItem == null)
+                return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.ITEM));
+
+            var productItemDetails = _mapper.Map<List<ProductItemDetailsModel>>(repoProductItem);
+
+            return new Result(true, productItemDetails);
+        }
+
         public List<ProductItemDetailsModel> List()
         {
             var repoProductItems = _repositoryProductItem.List().ToList();
