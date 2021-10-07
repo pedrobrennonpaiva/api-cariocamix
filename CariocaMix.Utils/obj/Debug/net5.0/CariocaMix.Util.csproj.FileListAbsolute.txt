@@ -1,8 +1,0 @@
-C:\dev\CariocaMix\CariocaMix.Utils\obj\Debug\net5.0\CariocaMix.Util.csproj.AssemblyReference.cache
-C:\dev\CariocaMix\CariocaMix.Utils\obj\Debug\net5.0\CariocaMix.Util.Resources.Message.resources
-C:\dev\CariocaMix\CariocaMix.Utils\obj\Debug\net5.0\CariocaMix.Util.Resources.Texts.resources
-C:\dev\CariocaMix\CariocaMix.Utils\obj\Debug\net5.0\CariocaMix.Util.csproj.GenerateResource.cache
-C:\dev\CariocaMix\CariocaMix.Utils\obj\Debug\net5.0\CariocaMix.Util.GeneratedMSBuildEditorConfig.editorconfig
-C:\dev\CariocaMix\CariocaMix.Utils\obj\Debug\net5.0\CariocaMix.Util.AssemblyInfoInputs.cache
-C:\dev\CariocaMix\CariocaMix.Utils\obj\Debug\net5.0\CariocaMix.Util.AssemblyInfo.cs
-C:\dev\CariocaMix\CariocaMix.Utils\obj\Debug\net5.0\CariocaMix.Util.csproj.CoreCompileInputs.cache
