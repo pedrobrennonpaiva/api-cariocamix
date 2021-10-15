@@ -17,6 +17,7 @@ namespace CariocaMix.API.Modules
         {
             services.AddTransient<IServiceUser, ServiceUser>();
             services.AddTransient<IServiceItem, ServiceItem>();
+            services.AddTransient<IServiceImage, ServiceImage>();
             services.AddTransient<IServiceAdmin, ServiceAdmin>();
             services.AddTransient<IServiceOrder, ServiceOrder>();
             services.AddTransient<IServiceStore, ServiceStore>();
@@ -35,9 +36,11 @@ namespace CariocaMix.API.Modules
             services.AddTransient<IServiceDeliveryStatus, ServiceDeliveryStatus>();
             services.AddTransient<IServiceCategoryProduct, ServiceCategoryProduct>();
             services.AddTransient<IServiceOrderProductItem, ServiceOrderProductItem>();
+            services.AddTransient<IServiceDeliveryRemoveArea, ServiceDeliveryRemoveArea>();
 
             services.AddTransient<IRepositoryUser, RepositoryUser>();
             services.AddTransient<IRepositoryItem, RepositoryItem>();
+            services.AddTransient<IRepositoryImage, RepositoryImage>();
             services.AddTransient<IRepositoryAdmin, RepositoryAdmin>();
             services.AddTransient<IRepositoryOrder, RepositoryOrder>();
             services.AddTransient<IRepositoryStore, RepositoryStore>();
@@ -56,6 +59,7 @@ namespace CariocaMix.API.Modules
             services.AddTransient<IRepositoryDeliveryStatus, RepositoryDeliveryStatus>();
             services.AddTransient<IRepositoryCategoryProduct, RepositoryCategoryProduct>();
             services.AddTransient<IRepositoryOrderProductItem, RepositoryOrderProductItem>();
+            services.AddTransient<IRepositoryDeliveryRemoveArea, RepositoryDeliveryRemoveArea>();
 
             services.AddSingleton(_ => configuration);
             services.AddTransient<ISendEmail, SendEmail>();

@@ -40,6 +40,34 @@ namespace CariocaMix.Service.Services
             return new Result(true, userDetails);
         }
 
+        public Result ListByName(string name)
+        {
+            var repoUser = _repositoryUser.ListBy(x => x.Name.ToUpper().Contains(name.ToUpper())).ToList();
+
+            if (repoUser == null)
+                return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
+
+            var userDetails = _mapper.Map<List<UserDetailsModel>>(repoUser.WithoutPasswords());
+
+            return new Result(true, userDetails);
+        }
+
+        public Result ListBySearch(string search)
+        {
+            var repoUser = _repositoryUser.ListBy(x => 
+                x.Name.ToUpper().Contains(search.ToUpper()) ||
+                x.Username.ToUpper().Contains(search.ToUpper()) ||
+                x.Email.ToUpper().Contains(search.ToUpper())
+            ).ToList();
+
+            if (repoUser == null)
+                return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
+
+            var userDetails = _mapper.Map<List<UserDetailsModel>>(repoUser.WithoutPasswords());
+
+            return new Result(true, userDetails);
+        }
+
         public List<UserDetailsModel> List()
         {
             var repoUsers = _repositoryUser.List().ToList();

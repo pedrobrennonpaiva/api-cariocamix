@@ -9,6 +9,7 @@ namespace CariocaMix.API.Modules
         {
             services.AddAutoMapper(typeof(UserProfile));
             services.AddAutoMapper(typeof(ItemProfile));
+            services.AddAutoMapper(typeof(ImageProfile));
             services.AddAutoMapper(typeof(AdminProfile));
             services.AddAutoMapper(typeof(OrderProfile));
             services.AddAutoMapper(typeof(StoreProfile));

@@ -135,6 +135,9 @@
   <data name="HORARIO" xml:space="preserve">
     <value>Horário</value>
   </data>
+  <data name="IMAGE" xml:space="preserve">
+    <value>Imagem</value>
+  </data>
   <data name="ITEM" xml:space="preserve">
     <value>Item</value>
   </data>

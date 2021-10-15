@@ -3,6 +3,7 @@ using CariocaMix.Domain.Models.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace CariocaMix.API.Controllers
 {
@@ -38,7 +39,7 @@ namespace CariocaMix.API.Controllers
 
                 return Ok(result.ReturnObject);
             }
-            catch
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }

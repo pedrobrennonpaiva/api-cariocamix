@@ -1,4 +1,5 @@
 ﻿using CariocaMix.Domain.Entities.Base;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CariocaMix.Domain.Entities
@@ -17,5 +18,9 @@ namespace CariocaMix.Domain.Entities
         public long Points { get; set; }
 
         public bool IsOneItem { get; set; }
+
+        public virtual List<CategoryProduct> CategoryProducts { get; set; }
+
+        public virtual List<ProductItem> ProductItems { get; set; }
     }
 }

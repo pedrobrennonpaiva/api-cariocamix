@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using CariocaMix.Domain.Entities.Base;
 using CariocaMix.Domain.Interfaces.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace CariocaMix.Repository.Persistence.Repositories.Base
 {
@@ -13,6 +14,7 @@ namespace CariocaMix.Repository.Persistence.Repositories.Base
         where TId : struct
     {
         private readonly DbContext _context;
+        private IDbContextTransaction _transation;
 
         public RepositoryBase(Context context)
         {
@@ -120,6 +122,21 @@ namespace CariocaMix.Repository.Persistence.Repositories.Base
         public void Commit()
         {
             _context.SaveChanges();
+        }
+
+        public void BeginTransation()
+        {
+            _transation = _context.Database.BeginTransaction();
+        }
+
+        public void TransationCommit()
+        {
+            _transation.Commit();
+        }
+
+        public void TransationRollback()
+        {
+            _transation.Rollback();
         }
     }
 }

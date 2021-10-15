@@ -55,6 +55,46 @@ namespace CariocaMix.API.Controllers
             }
         }
 
+        [HttpGet("name/{name}")]
+        public IActionResult ListByName(string name)
+        {
+            try
+            {
+                var result = _serviceAdmin.ListByName(name);
+
+                if (!result.IsSuccess)
+                {
+                    return NotFound(result);
+                }
+
+                return Ok(result.ReturnObject);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpGet("search/{search}")]
+        public IActionResult ListBySearch(string search)
+        {
+            try
+            {
+                var result = _serviceAdmin.ListBySearch(search);
+
+                if (!result.IsSuccess)
+                {
+                    return NotFound(result);
+                }
+
+                return Ok(result.ReturnObject);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
         [HttpPost("authenticate")]
         public IActionResult Authenticate(AuthenticateModel model)
         {

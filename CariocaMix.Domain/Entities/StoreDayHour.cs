@@ -1,5 +1,4 @@
 ﻿using CariocaMix.Domain.Entities.Base;
-using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CariocaMix.Domain.Entities
@@ -9,7 +8,7 @@ namespace CariocaMix.Domain.Entities
     {
         [ForeignKey("Store")]
         public long StoreId { get; set; }
-        public virtual Store Store { get; set; }
+        //public virtual Store Store { get; set; }
 
         public int DayOfWeek { get; set; }
 

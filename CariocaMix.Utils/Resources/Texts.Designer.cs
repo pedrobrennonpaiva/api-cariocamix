@@ -115,6 +115,15 @@ namespace CariocaMix.Utils.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Imagem.
+        /// </summary>
+        public static string IMAGE {
+            get {
+                return ResourceManager.GetString("IMAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Item.
         /// </summary>
         public static string ITEM {

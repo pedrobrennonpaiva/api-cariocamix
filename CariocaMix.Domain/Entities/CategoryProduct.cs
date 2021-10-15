@@ -13,6 +13,6 @@ namespace CariocaMix.Domain.Entities
 
         [ForeignKey("Product")]
         public long ProductId { get; set; }
-        public virtual Product Product { get; set; }
+        //public virtual Product Product { get; set; }
     }
 }

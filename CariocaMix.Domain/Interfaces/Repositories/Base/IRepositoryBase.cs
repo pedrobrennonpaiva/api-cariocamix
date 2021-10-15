@@ -36,5 +36,11 @@ namespace CariocaMix.Domain.Interfaces.Repositories.Base
         IEnumerable<TEntity> AddList(IEnumerable<TEntity> entities);
 
         void Commit();
+
+        void BeginTransation();
+
+        void TransationCommit();
+        
+        void TransationRollback();
     }
 }

@@ -4,14 +4,16 @@ using CariocaMix.Repository.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CariocaMix.Repository.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20211011125716_ImageData")]
+    partial class ImageData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,8 +98,7 @@ namespace CariocaMix.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StoreId")
-                        .IsUnique();
+                    b.HasIndex("StoreId");
 
                     b.ToTable("AddressStore");
                 });
@@ -217,35 +218,6 @@ namespace CariocaMix.Repository.Migrations
                     b.ToTable("Coupon");
                 });
 
-            modelBuilder.Entity("CariocaMix.Domain.Entities.DeliveryRemoveArea", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("Lat")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Lng")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("RegisterDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ShapeIndex")
-                        .HasColumnType("int");
-
-                    b.Property<long>("StoreId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StoreId");
-
-                    b.ToTable("DeliveryRemoveArea");
-                });
-
             modelBuilder.Entity("CariocaMix.Domain.Entities.DeliveryStatus", b =>
                 {
                     b.Property<long>("Id")
@@ -296,9 +268,6 @@ namespace CariocaMix.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ContentType")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Data")
                         .HasColumnType("varbinary(max)");
@@ -670,8 +639,8 @@ namespace CariocaMix.Repository.Migrations
             modelBuilder.Entity("CariocaMix.Domain.Entities.AddressStore", b =>
                 {
                     b.HasOne("CariocaMix.Domain.Entities.Store", "Store")
-                        .WithOne("AddressStore")
-                        .HasForeignKey("CariocaMix.Domain.Entities.AddressStore", "StoreId")
+                        .WithMany()
+                        .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -686,24 +655,15 @@ namespace CariocaMix.Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CariocaMix.Domain.Entities.Product", null)
-                        .WithMany("CategoryProducts")
+                    b.HasOne("CariocaMix.Domain.Entities.Product", "Product")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
 
-            modelBuilder.Entity("CariocaMix.Domain.Entities.DeliveryRemoveArea", b =>
-                {
-                    b.HasOne("CariocaMix.Domain.Entities.Store", "Store")
-                        .WithMany()
-                        .HasForeignKey("StoreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Store");
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("CariocaMix.Domain.Entities.DeliveryTax", b =>
@@ -808,22 +768,26 @@ namespace CariocaMix.Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CariocaMix.Domain.Entities.Product", null)
-                        .WithMany("ProductItems")
+                    b.HasOne("CariocaMix.Domain.Entities.Product", "Product")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Item");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("CariocaMix.Domain.Entities.StoreDayHour", b =>
                 {
-                    b.HasOne("CariocaMix.Domain.Entities.Store", null)
-                        .WithMany("StoreDayHours")
+                    b.HasOne("CariocaMix.Domain.Entities.Store", "Store")
+                        .WithMany()
                         .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Store");
                 });
 
             modelBuilder.Entity("CariocaMix.Domain.Entities.UserCoupon", b =>
@@ -843,20 +807,6 @@ namespace CariocaMix.Repository.Migrations
                     b.Navigation("Coupon");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("CariocaMix.Domain.Entities.Product", b =>
-                {
-                    b.Navigation("CategoryProducts");
-
-                    b.Navigation("ProductItems");
-                });
-
-            modelBuilder.Entity("CariocaMix.Domain.Entities.Store", b =>
-                {
-                    b.Navigation("AddressStore");
-
-                    b.Navigation("StoreDayHours");
                 });
 #pragma warning restore 612, 618
         }

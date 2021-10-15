@@ -23,7 +23,7 @@ namespace CariocaMix.API.Controllers
             return Ok(_serviceStore.List());
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("{id}")]
         public IActionResult GetById(long id)
         {

@@ -27,6 +27,8 @@ namespace CariocaMix.Repository.Persistence
         public virtual DbSet<Coupon> Coupons { get; set; }
         public virtual DbSet<DeliveryStatus> DeliveryStatuses { get; set; }
         public virtual DbSet<DeliveryTax> DeliveryTaxes { get; set; }
+        public virtual DbSet<DeliveryRemoveArea> DeliveryRemoveAreas { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderProduct> OrderProducts { get; set; }
@@ -42,16 +44,6 @@ namespace CariocaMix.Repository.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserCoupon>(p => {
-                p.ToTable("UserCoupon");
-                p.HasKey(p => p.Id);
-
-                p
-                    .HasOne(pp => pp.User)
-                    .WithOne()
-                    //.HasForeignKey(r => r.)
-                    .OnDelete(DeleteBehavior.Restrict);
-            });
         }
     }
 }
