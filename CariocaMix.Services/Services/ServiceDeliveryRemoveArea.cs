@@ -75,6 +75,18 @@ namespace CariocaMix.Service.Services
             return new Result(true, deliveryRemoveAreaDetails);
         }
 
+        public Result ListByStoreId(long storeId)
+        {
+            var repoDeliveryRemoveArea = _repositoryDeliveryRemoveArea.ListBy(x => x.StoreId == storeId).ToList();
+
+            if (repoDeliveryRemoveArea == null)
+                return new Result(false, string.Format(Message.X0_NAO_ENCONTRADA, Texts.TAXA));
+
+            var deliveryRemoveAreaDetails = _mapper.Map<List<DeliveryRemoveAreaDetailsModel>>(repoDeliveryRemoveArea);
+
+            return new Result(true, deliveryRemoveAreaDetails);
+        }
+
         public List<DeliveryRemoveAreaDetailsModel> List()
         {
             var repoDeliveryRemoveAreas = _repositoryDeliveryRemoveArea.List().ToList();

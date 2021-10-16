@@ -13,19 +13,32 @@ namespace CariocaMix.Service.Services
 {
     public class ServiceDeliveryTax : IServiceDeliveryTax
     {
-        private readonly IRepositoryDeliveryTax _repositoryDeliveryTax;
         private readonly IMapper _mapper;
+        private readonly IRepositoryStore _repositoryStore;
+        private readonly IRepositoryDeliveryTax _repositoryDeliveryTax;
 
-        public ServiceDeliveryTax(IRepositoryDeliveryTax repositoryDeliveryTax, IMapper mapper)
+        public ServiceDeliveryTax(IMapper mapper, IRepositoryDeliveryTax repositoryDeliveryTax,
+            IRepositoryStore repositoryStore)
         {
-            _repositoryDeliveryTax = repositoryDeliveryTax;
             _mapper = mapper;
+            _repositoryStore = repositoryStore;
+            _repositoryDeliveryTax = repositoryDeliveryTax;
         }
 
         public Result Add(DeliveryTaxAddModel request)
         {
             try
             {
+                if(_repositoryStore.GetById(request.StoreId) == null)
+                {
+                    return new Result(false, string.Format(Message.X0_NAO_ENCONTRADA, Texts.LOJA));
+                }
+
+                if (_repositoryDeliveryTax.ListBy(x => x.StoreId == request.StoreId && x.Radius == request.Radius).Any())
+                {
+                    return new Result(false, string.Format(Message.JA_EXISTE_X0, "uma taxa com este raio"));
+                }
+
                 var deliveryTax = _mapper.Map<DeliveryTax>(request);
 
                 _repositoryDeliveryTax.Add(deliveryTax);
@@ -86,6 +99,11 @@ namespace CariocaMix.Service.Services
         {
             try
             {
+                if (_repositoryStore.GetById(request.StoreId) == null)
+                {
+                    return new Result(false, string.Format(Message.X0_NAO_ENCONTRADA, Texts.LOJA));
+                }
+
                 var deliveryTax = _mapper.Map<DeliveryTax>(request);
                 deliveryTax.Id = id;
 

@@ -44,6 +44,27 @@ namespace CariocaMix.API.Controllers
             }
         }
 
+        [Authorize]
+        [HttpGet("store/{storeId}")]
+        public IActionResult ListByStoreId(long storeId)
+        {
+            try
+            {
+                var result = _serviceDeliveryRemoveArea.ListByStoreId(storeId);
+
+                if (!result.IsSuccess)
+                {
+                    return NotFound(result);
+                }
+
+                return Ok(result.ReturnObject);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
         [HttpPost]
         public IActionResult Post(DeliveryRemoveAreaAddModel model)
         {
