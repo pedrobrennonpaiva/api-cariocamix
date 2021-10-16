@@ -1,5 +1,5 @@
 ﻿using CariocaMix.Domain.Interfaces.Services;
-using CariocaMix.Domain.Models.Store;
+using CariocaMix.Domain.Models.DeliveryRemoveArea;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,29 +7,29 @@ using Microsoft.AspNetCore.Mvc;
 namespace CariocaMix.API.Controllers
 {
     [ApiController]
-    [Route("store")]
-    public class StoreController : ControllerBase
+    [Route("deliveryRemoveArea")]
+    public class DeliveryRemoveAreaController : ControllerBase
     {
-        private readonly IServiceStore _serviceStore;
+        private readonly IServiceDeliveryRemoveArea _serviceDeliveryRemoveArea;
 
-        public StoreController(IServiceStore serviceStore)
+        public DeliveryRemoveAreaController(IServiceDeliveryRemoveArea serviceDeliveryRemoveArea)
         {
-            _serviceStore = serviceStore;
+            _serviceDeliveryRemoveArea = serviceDeliveryRemoveArea;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_serviceStore.List());
+            return Ok(_serviceDeliveryRemoveArea.List());
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult GetById(long id)
         {
             try
             {
-                var result = _serviceStore.GetById(id);
+                var result = _serviceDeliveryRemoveArea.GetById(id);
 
                 if (!result.IsSuccess)
                 {
@@ -45,11 +45,11 @@ namespace CariocaMix.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(StoreAddModel model)
+        public IActionResult Post(DeliveryRemoveAreaAddModel model)
         {
             try
             {
-                var result = _serviceStore.Add(model);
+                var result = _serviceDeliveryRemoveArea.Add(model);
 
                 if (!result.IsSuccess)
                 {
@@ -65,11 +65,11 @@ namespace CariocaMix.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(long id, StoreUpdateModel model)
+        public IActionResult Update(long id, DeliveryRemoveAreaUpdateModel model)
         {
             try
             {
-                var result = _serviceStore.Update(id, model);
+                var result = _serviceDeliveryRemoveArea.Update(id, model);
 
                 if (!result.IsSuccess)
                 {
@@ -90,7 +90,7 @@ namespace CariocaMix.API.Controllers
         {
             try
             {
-                var result = _serviceStore.Delete(id);
+                var result = _serviceDeliveryRemoveArea.Delete(id);
 
                 if (!result.IsSuccess)
                 {

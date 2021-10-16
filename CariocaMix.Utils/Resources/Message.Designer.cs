@@ -187,6 +187,15 @@ namespace CariocaMix.Utils.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Já existe {0}..
+        /// </summary>
+        public static string JA_EXISTE_X0 {
+            get {
+                return ResourceManager.GetString("JA_EXISTE_X0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Não é possível excluir um {0} associado a um {1}..
         /// </summary>
         public static string NAO_E_POSSIVEL_EXCLUIR_UM_X0_ASSOCIADO_A_UM_X1 {

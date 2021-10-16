@@ -26,6 +26,11 @@ namespace CariocaMix.Service.Services
         {
             try
             {
+                if(_repositoryAddressStore.ListBy(x => x.StoreId == request.StoreId).Any())
+                {
+                    return new Result(false, string.Format(Message.JA_EXISTE_X0, "um endereço para esta loja"));
+                }
+
                 var addressStore = _mapper.Map<AddressStore>(request);
 
                 _repositoryAddressStore.Add(addressStore);
@@ -86,6 +91,11 @@ namespace CariocaMix.Service.Services
         {
             try
             {
+                if(_repositoryAddressStore.GetById(id) == null)
+                {
+                    return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.ENDERECO));
+                }
+
                 var addressStore = _mapper.Map<AddressStore>(request);
                 addressStore.Id = id;
 
