@@ -125,5 +125,26 @@ namespace CariocaMix.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [Authorize]
+        [HttpDelete("store/{storeId}")]
+        public IActionResult DeleteByStoreId(long storeId)
+        {
+            try
+            {
+                var result = _serviceDeliveryRemoveArea.DeleteByStoreId(storeId);
+
+                if (!result.IsSuccess)
+                {
+                    return BadRequest(result);
+                }
+
+                return NoContent();
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
     }
 }

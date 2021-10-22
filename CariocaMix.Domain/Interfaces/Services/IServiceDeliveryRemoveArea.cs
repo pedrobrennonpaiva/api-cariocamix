@@ -14,6 +14,8 @@ namespace CariocaMix.Domain.Interfaces.Services
 
         Result Delete(long id);
 
+        Result DeleteByStoreId(long storeId);
+
         Result GetById(long id);
 
         Result ListByStoreId(long storeId);

@@ -19,6 +19,10 @@ namespace CariocaMix.Repository.Persistence
             optionsBuilder.UseLazyLoadingProxies().UseSqlServer(connectionString);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+        }
+
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<AddressStore> AddressStores { get; set; }
         public virtual DbSet<Admin> Admins { get; set; }
@@ -41,9 +45,5 @@ namespace CariocaMix.Repository.Persistence
         public virtual DbSet<StoreDayHour> StoreDayHours { get; set; }
         public virtual DbSet<User> Users { get; set; }   
         public virtual DbSet<UserCoupon> UserCoupons { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-        }
     }
 }

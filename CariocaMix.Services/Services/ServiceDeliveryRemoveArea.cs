@@ -63,6 +63,31 @@ namespace CariocaMix.Service.Services
             }
         }
 
+        public Result DeleteByStoreId(long storeId)
+        {
+            try
+            {
+                var deliveryRemoveArea = _repositoryDeliveryRemoveArea.ListBy(x => x.StoreId == storeId).ToList();
+
+                if (deliveryRemoveArea == null || !deliveryRemoveArea.Any())
+                {
+                    return new Result(false, string.Format(Message.X0_NAO_ENCONTRADA, Texts.TAXA));
+                }
+
+                foreach (var deliveryRemArea in deliveryRemoveArea)
+                {
+                    _repositoryDeliveryRemoveArea.Remove(deliveryRemArea);
+                }
+                _repositoryDeliveryRemoveArea.Commit();
+
+                return new Result(true, string.Format(Message.X0_EXCLUIDA_COM_SUCESSO, Texts.TAXA));
+            }
+            catch (Exception ex)
+            {
+                return new Result(false, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "excluir!"));
+            }
+        }
+
         public Result GetById(long id)
         {
             var repoDeliveryRemoveArea = _repositoryDeliveryRemoveArea.GetById(id);

@@ -105,7 +105,23 @@ namespace CariocaMix.Service.Services
                 }
 
                 var deliveryTax = _mapper.Map<DeliveryTax>(request);
-                deliveryTax.Id = id;
+
+                if(id == 0)
+                {
+                    var delTax = _repositoryDeliveryTax.GetBy(x => x.StoreId == deliveryTax.StoreId && x.Radius == deliveryTax.Radius);
+
+                    if (delTax == null)
+                    {
+                        var addModel = _mapper.Map<DeliveryTaxAddModel>(deliveryTax);
+                        return Add(addModel);
+                    }
+
+                    deliveryTax.Id = delTax.Id;
+                }
+                else
+                {
+                    deliveryTax.Id = id;
+                }
 
                 _repositoryDeliveryTax.Edit(deliveryTax);
                 _repositoryDeliveryTax.Commit();

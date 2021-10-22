@@ -10,6 +10,7 @@ namespace CariocaMix.Service.Profiles
         {
             CreateMap<DeliveryTax, DeliveryTaxDetailsModel>();
             CreateMap<DeliveryTaxAddModel, DeliveryTax>();
+            CreateMap<DeliveryTax, DeliveryTaxAddModel> ();
             CreateMap<DeliveryTaxUpdateModel, DeliveryTax>();
         }
     }
