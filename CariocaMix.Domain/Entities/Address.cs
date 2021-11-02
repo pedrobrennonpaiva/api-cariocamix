@@ -1,5 +1,4 @@
 ﻿using CariocaMix.Domain.Entities.Base;
-using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CariocaMix.Domain.Entities
@@ -24,5 +23,9 @@ namespace CariocaMix.Domain.Entities
         public string State { get; set; }
 
         public string Country { get; set; }
+
+        public double Lat { get; set; }
+
+        public double Lng { get; set; }
     }
 }
