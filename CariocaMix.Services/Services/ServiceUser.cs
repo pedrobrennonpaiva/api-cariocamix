@@ -3,7 +3,7 @@ using CariocaMix.Domain.Entities;
 using CariocaMix.Domain.Helpers;
 using CariocaMix.Domain.Interfaces.Repositories;
 using CariocaMix.Domain.Interfaces.Services;
-using CariocaMix.Domain.Models.Returns;
+using CariocaMix.Domain.Models.ReturnMessage;
 using CariocaMix.Domain.Models.Token;
 using CariocaMix.Domain.Models.User;
 using CariocaMix.Utils.Email;
@@ -28,31 +28,31 @@ namespace CariocaMix.Service.Services
             _sendEmail = sendEmail;
         }
 
-        public Result GetById(long id)
+        public ReturnMessageResponse GetById(long id)
         {
             var repoUser = _repositoryUser.GetById(id);
 
             if (repoUser == null)
-                return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
+                return new ReturnMessageResponse(false, 0, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
 
             var userDetails = _mapper.Map<UserDetailsModel>(repoUser.WithoutPassword());
 
-            return new Result(true, userDetails);
+            return new ReturnMessageResponse(true, userDetails);
         }
 
-        public Result ListByName(string name)
+        public ReturnMessageResponse ListByName(string name)
         {
             var repoUser = _repositoryUser.ListBy(x => x.Name.ToUpper().Contains(name.ToUpper())).ToList();
 
             if (repoUser == null)
-                return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
+                return new ReturnMessageResponse(false, 0, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
 
             var userDetails = _mapper.Map<List<UserDetailsModel>>(repoUser.WithoutPasswords());
 
-            return new Result(true, userDetails);
+            return new ReturnMessageResponse(true, userDetails);
         }
 
-        public Result ListBySearch(string search)
+        public ReturnMessageResponse ListBySearch(string search)
         {
             var repoUser = _repositoryUser.ListBy(x => 
                 x.Name.ToUpper().Contains(search.ToUpper()) ||
@@ -61,11 +61,11 @@ namespace CariocaMix.Service.Services
             ).ToList();
 
             if (repoUser == null)
-                return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
+                return new ReturnMessageResponse(false, 0, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
 
             var userDetails = _mapper.Map<List<UserDetailsModel>>(repoUser.WithoutPasswords());
 
-            return new Result(true, userDetails);
+            return new ReturnMessageResponse(true, userDetails);
         }
 
         public List<UserDetailsModel> List()
@@ -75,7 +75,7 @@ namespace CariocaMix.Service.Services
             return userDetails;
         }
 
-        public Result Authenticate(AuthenticateModel model)
+        public ReturnMessageResponse Authenticate(AuthenticateModel model)
         {
             string passwordHashed = Utils.Security.HashPassword.GetHash(model.Password);
 
@@ -96,48 +96,48 @@ namespace CariocaMix.Service.Services
             }
             catch
             {
-                return new Result(false, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "buscar o usuário!"));
+                return new ReturnMessageResponse(false, 0, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "buscar o usuário!"));
             }
 
             if (user == null)
             {
-                return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
+                return new ReturnMessageResponse(false, 0, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
             }
 
             var userAuth = AuthenticationToken.GenerateToken(user);
 
             if (userAuth == null)
             {
-                return new Result(false, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "gerar o token!"));
+                return new ReturnMessageResponse(false, 0, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "gerar o token!"));
             }
 
-            return new Result(true, userAuth);
+            return new ReturnMessageResponse(true, userAuth);
         }
 
-        public Result ChangePassword(ChangePasswordModel model)
+        public ReturnMessageResponse ChangePassword(ChangePasswordModel model)
         {
             try
             {
                 User user = _repositoryUser.GetBy(x => x.Id == model.Id);
 
                 if (user == null)
-                    return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
+                    return new ReturnMessageResponse(false, 0, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
 
                 if(string.IsNullOrEmpty(model.NewPassword))
-                    return new Result(false, string.Format(Message.X0_DEVE_SER_PREENCHIDA, Texts.SENHA), user);
+                    return new ReturnMessageResponse(false, 0, string.Format(Message.X0_DEVE_SER_PREENCHIDA, Texts.SENHA));
 
                 string validatePassword = StringValidator.ValidatePasswordEightCharacters(model.NewPassword);
 
                 if (!string.IsNullOrEmpty(validatePassword))
                 {
-                    return new Result(false, validatePassword, user);
+                    return new ReturnMessageResponse(false, 0, validatePassword);
                 }
 
                 string hashNewPassword = Utils.Security.HashPassword.GetHash(model.NewPassword);
 
                 if (user.Password.Equals(hashNewPassword))
                 {
-                    return new Result(false, string.Format(Message.AS_X0_NAO_PODEM_SER_IGUAIS, Texts.SENHA.ToLower() + "s"), user);
+                    return new ReturnMessageResponse(false, 0, string.Format(Message.AS_X0_NAO_PODEM_SER_IGUAIS, Texts.SENHA.ToLower() + "s"));
                 }
 
                 user.Password = Utils.Security.HashPassword.GetHash(model.NewPassword);
@@ -147,43 +147,33 @@ namespace CariocaMix.Service.Services
 
                 _sendEmail.SendOneEmail("Teste", "Testando e-mail", user.Email);
 
-                return new Result(true, string.Format(Message.X0_ALTERADA_COM_SUCESSO, Texts.SENHA));
+                return new ReturnMessageResponse(true);
             }
             catch (Exception ex)
             {
-                return new Result(false, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "atualizar a senha!"));
+                return new ReturnMessageResponse(false, 0, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "atualizar a senha!"));
             }
 
         }
 
-        public Result Add(UserAddModel request)
+        public ReturnMessageResponse Add(UserAddModel request)
         {
             try
             {
-                string pass = string.Empty;
+                CleanData(request);
 
-                if (!string.IsNullOrEmpty(request.Password))
+                var userExist = _repositoryUser.Exist(x => 
+                    x.Cpf.Equals(request.Cpf) || 
+                    x.Email.Equals(request.Email) || 
+                    (!string.IsNullOrEmpty(x.Username) && x.Username.Equals(request.Username)));
+
+                if(userExist)
                 {
-                    string validatePassword = StringValidator.ValidatePasswordEightCharacters(request.Password);
-
-                    if (!string.IsNullOrEmpty(validatePassword))
-                    {
-                        return new Result(false, validatePassword);
-                    }
-
-                    pass = request.Password;
-                    request.Password = Utils.Security.HashPassword.GetHash(request.Password);
+                    return new ReturnMessageResponse(false, 0, string.Format(Message.JA_EXISTE_X0, "um usuário com este e-mail/CPF/username"));
                 }
 
-                if (string.IsNullOrEmpty(request.Email))
-                {
-                    return new Result(false, string.Format(Message.X0_DEVE_SER_PREENCHIDO, Texts.EMAIL));
-                }
+                request.Password = Utils.Security.HashPassword.GetHash(request.Password);
 
-                request.Name = request.Name.Trim();
-                request.Email = request.Email.Trim().ToLower();
-                request.Username = !string.IsNullOrEmpty(request.Username) ? request.Username.Trim().ToLower() : request.Username;
-               
                 var user = _mapper.Map<User>(request);
                 user.RegisterDate = DateTime.Now;
 
@@ -192,28 +182,28 @@ namespace CariocaMix.Service.Services
 
                 var resultObj = _mapper.Map<UserDetailsModel>(user);
 
-                return new Result(true, resultObj);
+                return new ReturnMessageResponse(true, resultObj);
             }
             catch (Exception ex)
             {
-                return new Result(false, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "cadastrar!"));
+                return new ReturnMessageResponse(false, 0, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "cadastrar!"));
             }
         }
 
-        public Result Update(long id, UserUpdateModel request)
+        public ReturnMessageResponse Update(long id, UserUpdateModel request)
         {
             if (request == null)
             {
-                return new Result(false, string.Format(Message.X0_DEVE_SER_PREENCHIDO, Texts.USUARIO));
+                return new ReturnMessageResponse(false, 0, string.Format(Message.X0_DEVE_SER_PREENCHIDO, Texts.USUARIO));
             }
 
             User user = _repositoryUser.GetById(id);
 
             if (user == null)
-                return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
+                return new ReturnMessageResponse(false, 0, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
 
             if (string.IsNullOrEmpty(request.Email))
-                return new Result(false, string.Format(Message.X0_DEVE_SER_PREENCHIDA, Texts.EMAIL));
+                return new ReturnMessageResponse(false, 0, string.Format(Message.X0_DEVE_SER_PREENCHIDA, Texts.EMAIL));
 
             try
             {
@@ -228,15 +218,15 @@ namespace CariocaMix.Service.Services
                 _repositoryUser.Edit(userUpdate);
                 _repositoryUser.Commit();
 
-                return new Result(true);
+                return new ReturnMessageResponse(true);
             }
             catch (Exception ex)
             {
-                return new Result(false, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "atualizar!"));
+                return new ReturnMessageResponse(false, 0, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "atualizar!"));
             }
         }
 
-        public Result Delete(long id)
+        public ReturnMessageResponse Delete(long id)
         {
             try
             {
@@ -244,18 +234,26 @@ namespace CariocaMix.Service.Services
 
                 if (user == null)
                 {
-                    return new Result(false, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
+                    return new ReturnMessageResponse(false, 0, string.Format(Message.X0_NAO_ENCONTRADO, Texts.USUARIO));
                 }
 
                 _repositoryUser.Remove(user);
                 _repositoryUser.Commit();
 
-                return new Result(true, string.Format(Message.X0_EXCLUIDO_COM_SUCESSO, Texts.USUARIO));
+                return new ReturnMessageResponse(true);
             }
             catch (Exception ex)
             {
-                return new Result(false, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "excluir!"));
+                return new ReturnMessageResponse(false, 0, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "excluir!"));
             }
+        }
+
+        private void CleanData(UserAddModel request)
+        {
+            request.Name = request.Name.Trim();
+            request.Email = request.Email.Trim().ToLower();
+            request.Username = !string.IsNullOrEmpty(request.Username) ? request.Username.Trim().ToLower() : request.Username;
+            request.Cpf = request.Cpf.Trim().Replace(".","").Replace("-","");
         }
     }
 }

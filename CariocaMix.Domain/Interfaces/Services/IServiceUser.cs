@@ -1,4 +1,4 @@
-﻿using CariocaMix.Domain.Models.Returns;
+﻿using CariocaMix.Domain.Models.ReturnMessage;
 using CariocaMix.Domain.Models.User;
 using System.Collections.Generic;
 
@@ -6,22 +6,22 @@ namespace CariocaMix.Domain.Interfaces.Services
 {
     public interface IServiceUser
     {
-        Result Authenticate(AuthenticateModel model);
+        ReturnMessageResponse Authenticate(AuthenticateModel model);
 
-        Result ChangePassword(ChangePasswordModel model);
+        ReturnMessageResponse ChangePassword(ChangePasswordModel model);
 
-        Result Add(UserAddModel request);
+        ReturnMessageResponse Add(UserAddModel request);
 
-        Result Update(long id, UserUpdateModel request);
+        ReturnMessageResponse Update(long id, UserUpdateModel request);
 
         List<UserDetailsModel> List();
 
-        Result Delete(long id);
+        ReturnMessageResponse Delete(long id);
 
-        Result GetById(long id);
+        ReturnMessageResponse GetById(long id);
 
-        Result ListByName(string name);
+        ReturnMessageResponse ListByName(string name);
 
-        Result ListBySearch(string search);
+        ReturnMessageResponse ListBySearch(string search);
     }
 }

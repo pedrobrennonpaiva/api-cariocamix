@@ -31,10 +31,12 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.10" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CariocaMix.CrossCutting\CariocaMix.CrossCutting.csproj" />
+    <ProjectReference Include="..\CariocaMix.Domain\CariocaMix.Domain.csproj" />
   </ItemGroup>
 
 </Project>

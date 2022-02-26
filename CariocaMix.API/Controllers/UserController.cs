@@ -9,6 +9,7 @@ using System.Linq;
 
 namespace CariocaMix.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("user")]
     public class UserController : ControllerBase
@@ -26,7 +27,6 @@ namespace CariocaMix.API.Controllers
             return Ok(_serviceUser.List());
         }
 
-        [Authorize]
         [HttpGet("{id}")]
         public IActionResult GetById(long id)
         {
@@ -106,7 +106,7 @@ namespace CariocaMix.API.Controllers
                     return BadRequest(result);
                 }
 
-                return Ok(result.ReturnObject);
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -126,7 +126,7 @@ namespace CariocaMix.API.Controllers
                     return BadRequest(result);
                 }
 
-                return Created("", result.ReturnObject);
+                return Created(string.Empty, result.ReturnObject);
             }
             catch (Exception ex)
             {
@@ -177,10 +177,10 @@ namespace CariocaMix.API.Controllers
 
                 if (!result.IsSuccess)
                 {
-                    return BadRequest(result.Message);
+                    return BadRequest(result);
                 }
 
-                return Ok(result.Message);
+                return Ok(result);
             }
             catch (Exception ex)
             {

@@ -123,6 +123,9 @@
   <data name="CATEGORIA" xml:space="preserve">
     <value>Categoria</value>
   </data>
+  <data name="CPF" xml:space="preserve">
+    <value>CPF</value>
+  </data>
   <data name="CUPOM" xml:space="preserve">
     <value>Cupom</value>
   </data>
@@ -144,6 +147,12 @@
   <data name="LOJA" xml:space="preserve">
     <value>Loja</value>
   </data>
+  <data name="NASCIMENTO" xml:space="preserve">
+    <value>Data de nascimento</value>
+  </data>
+  <data name="NOME" xml:space="preserve">
+    <value>Nome</value>
+  </data>
   <data name="PAGAMENTO" xml:space="preserve">
     <value>Pagamento</value>
   </data>
@@ -164,6 +173,9 @@
   </data>
   <data name="TAXA" xml:space="preserve">
     <value>Taxa</value>
+  </data>
+  <data name="TELEFONE" xml:space="preserve">
+    <value>Telefone</value>
   </data>
   <data name="USUARIO" xml:space="preserve">
     <value>Usuário</value>

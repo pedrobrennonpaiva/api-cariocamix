@@ -109,7 +109,7 @@ namespace CariocaMix.Service.Services
                 return new Result(false, string.Format(Message.OCORREU_UM_ERRO_AO_X0, "gerar o token!"));
             }
 
-            return new Result(true, adminAuth);
+                                                        return new Result(true, adminAuth);
         }
 
         public Result ChangePassword(ChangePasswordModel model)

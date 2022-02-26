@@ -2,10 +2,13 @@
 using CariocaMix.CrossCutting.Services;
 using CariocaMix.Domain.Interfaces.Repositories;
 using CariocaMix.Domain.Interfaces.Services;
+using CariocaMix.Domain.Models.User;
 using CariocaMix.Repository.Persistence;
 using CariocaMix.Repository.Persistence.Repositories;
 using CariocaMix.Service.Services;
+using CariocaMix.Service.Validators.User;
 using CariocaMix.Utils.Email;
+using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -60,6 +63,8 @@ namespace CariocaMix.API.Modules
             services.AddTransient<IRepositoryCategoryProduct, RepositoryCategoryProduct>();
             services.AddTransient<IRepositoryOrderProductItem, RepositoryOrderProductItem>();
             services.AddTransient<IRepositoryDeliveryRemoveArea, RepositoryDeliveryRemoveArea>();
+
+            services.AddTransient<IValidator<UserAddModel>, UserAddModelValidator>();
 
             services.AddSingleton(_ => configuration);
             services.AddTransient<ISendEmail, SendEmail>();
